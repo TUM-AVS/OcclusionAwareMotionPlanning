@@ -1,0 +1,149 @@
+#############################################################################
+# PLEASE FIND INFORMATION HERE: https://github.com/TUM-AVS/Frenetix-Occlusion
+#############################################################################
+
+##############################################################################
+# Frenetix Occlusion settings
+##############################################################################
+use_occlusion_module: True # or False
+track_obstacles: True # or False
+omniscient_prediction: False # or False
+
+
+##############################################################################
+# Metric and threshold settings: set metrics and their threshold
+##############################################################################
+
+metrics:
+  activated_metrics: # all available metrics: ['hr', 'ttc', 'be', 'ttce', 'dce', 'wttc', 'cp']
+    - 'hr'
+    #- 'ttc'
+    #- 'ttce'
+    #- 'dce'
+    #- 'wttc'
+    #- 'cp'
+
+  metric_thresholds: # max 1, null means deactivated
+    harm: 0.20 #0.20
+    risk: 0.10 #0.10
+    be: null
+    cp: null
+    ttc: null
+    wttc: null
+    ttce: null
+    dce: null
+
+
+##############################################################################
+# Sensor Model settings: define the sensor radius and angle
+##############################################################################
+
+sensor_model:
+  sensor_radius: 60
+  sensor_angle: 360
+  lanelet_buffer: 5
+
+
+##############################################################################
+# Occlusion Tracker  settings: define the occlusion tracker parameters
+##############################################################################
+
+occlusion_tracker:
+  tracking_enabled: True
+  min_occlusion_area: 1.0
+  lane_config:
+    propagation_speed_street: "lanelet" # float value or "lanelet" to use the lanelets speed limit (for roads)
+    propagation_speed_sidewalk: "lanelet" # float value or "lanelet" to use the lanelets speed limit (for sidewalks)
+
+
+##############################################################################
+# Spawn point settings: define where and how many spawn points shall be added
+##############################################################################
+
+spawn_locator:
+  spawn_pedestrians: True
+  max_pedestrians: 3
+  spawn_vehicles_and_bicycles: True
+  max_vehicles_and_bicycles: 4
+
+
+##############################################################################
+# Real agent settings: define agents that shall be added to the real scenario
+##############################################################################
+
+# agents for left turn in intersection (bicyclist emerging behind car, scenario 1 in our paper)
+# to resimulate the paper experiments, some adjustments must be done(see Readme)
+
+# scenario left turn with bike occluded from truck
+agents:
+   - position: [16.2, 9.5]
+     velocity: 5.5
+     agent_type: "Bicycle"
+     timestep: 15
+     horizon: 5.0
+
+# scenario left turn at FFB intersection with occluded vehicle
+#  - position: [66.3, 34]
+#    velocity: 8
+#    agent_type: "Car"
+#    timestep: 0
+#    horizon: 5.0
+
+ 
+
+# agents for left turn in intersection (bicyclist emerging behind truck, scenario 2 in our paper)
+#agents:
+#  - position: [16, 2.8]
+#    velocity: 8
+#    agent_type: "Car"
+#    timestep: 0
+#    horizon: 5.0
+  #- position: [14.4, 6.9]
+  #  velocity: 5.5
+  #  agent_type: "Bicycle"
+  #  timestep: 6
+  #  horizon: 5.0
+  #- position: [66.4, 26.1]
+  #  velocity: 8
+  #  agent_type: "Truck"
+  #  timestep: 0
+  #  horizon: 5.0
+  
+  
+
+
+##############################################################################
+# expert settings: agent parameters and debug plot
+##############################################################################
+
+agent_manager:
+  max_trajectories_per_agent: 5
+  prediction:
+    variance_factor: 1.05
+    size_factor_length_s: 1.2
+    size_factor_width_s: 1.3
+    size_factor_length_l: 1.4
+    size_factor_width_l: 2.5
+  bicycle:
+    default_velocity: 5.0
+    length: 2.0
+    width: 0.9
+    wheelbase: 1.3
+  car:
+    default_velocity: 10.0
+    length: 4.8
+    width: 2.0
+    wheelbase: 2.5
+  truck:
+    default_velocity: 10.0
+    length: 9.0
+    width: 2.5
+    wheelbase: 7.0
+  pedestrian:
+    default_velocity: 1.4
+    length: 0.3
+    width: 0.5
+
+# debug settings
+plot: False
+debug: False

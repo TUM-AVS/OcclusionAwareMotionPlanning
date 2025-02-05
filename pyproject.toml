@@ -1,0 +1,72 @@
+[tool.poetry]
+name = "frenetix-motion-planner"
+version = "2024.4"
+description = "Frenetix Motion Planner: Sampling-based Frenet Planner & Multi-agent CommonRoad Scenario Handler"
+license = "LGPL-3.0-or-later"
+authors = [
+    "Rainer Trauth <rainer.trauth@tum.de>",
+    "Marc Kaufeld <marc.kaufeld@tum.de>",
+]
+maintainers = [
+    "Rainer Trauth <rainer.trauth@tum.de>",
+    "Marc Kaufeld <marc.kaufeld@tum.de>",
+]
+readme = "README.md"
+
+packages = [
+    { include = "frenetix_motion_planner" },
+    { include = "cr_scenario_handler" },
+    { include = "wale_net_lite" },
+    { include = "behavior_planner" },
+]
+
+[tool.poetry.dependencies]
+
+python = ">=3.9,<3.13"
+
+# frenetix C++ core algorithm
+frenetix = ">=0.4.0"
+
+# commonroad packages
+commonroad-drivability-checker = "~2024.2"
+commonroad-route-planner = "~2025.0.1"
+commonroad-io = "2024.1"
+commonroad-vehicle-models = "^3.0.2"
+
+
+# other packages
+wale-net = "~3.0.3"
+matplotlib = "~3.8.4"
+numpy = "^1.24.2"
+torch = "^2.2.1"
+omegaconf = "^2.3.0"
+onnxruntime = "~1.18.1"
+imageio = "^2.31.2"
+shapely = "^2.0.6"
+pandas = "~2.0.3"
+psutil = ">=5.9.6"
+rich = "^13.7.1"
+toml = "^0.10.2"
+centerline = "1.1.1"
+
+[tool.poetry.group.docs]
+optional = true
+
+[tool.poetry.group.docs.dependencies]
+sphinx = ">=6.2.1"
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.dev-dependencies]
+pytest = "^8.2"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.5.1"
+
+[tool.poetry.scripts]
+reactive-planner = "main:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
