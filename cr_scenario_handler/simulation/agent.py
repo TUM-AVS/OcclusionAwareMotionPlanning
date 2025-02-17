@@ -181,7 +181,7 @@ class Agent:
                                                                                    occlusion_module=self.planner_interface.occlusion_module,
                                                                                    ego_id=self.id,
                                                                                    msg_logger=self.msg_logger)
-                if self.planner_interface.occlusion_module.omniscient_prediction:
+                if self.planner_interface.occlusion_module and self.planner_interface.occlusion_module.omniscient_prediction:
                     self.predictions = global_predictions
                     if self.id in global_predictions:
                         del self.predictions[self.id]
@@ -189,7 +189,8 @@ class Agent:
                 self.predictions, self.visible_area = None, None
 
             # trace vanishing agents
-            if self.predictions is not None and self.planner_interface.occlusion_module.track_obstacles:
+            if (self.predictions is not None and self.planner_interface.occlusion_module and
+                    self.planner_interface.occlusion_module.track_obstacles):
                 # Check if an element from prev_predictions is no longer in predictions
                 for prev_pred in self.prev_predictions:
                     if prev_pred not in self.predictions:
