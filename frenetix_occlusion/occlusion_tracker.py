@@ -441,8 +441,6 @@ class OcclusionTracker:
         # remove small artifacts
         self.total_occluded_area = total_occluded_area.buffer(0.01)
 
-        self.write_csv(timestep)
-
     def write_csv(self, timestep):
         # Prepare CSV file
         csv_filename = f"{self.scenario.scenario_id}_occlusion_data.csv"
