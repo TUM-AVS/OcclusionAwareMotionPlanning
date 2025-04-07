@@ -174,9 +174,17 @@ Germany
 If you use this repository in your research, please cite our related papers:
 
 
-### Occlusion Aware Motion Planning
+### Occlusion Aware Motion Planning (arXiv PrePrint)
 ```bibtex
-t.b.d
+@misc{Moller2025,
+  doi = {10.48550/ARXIV.2504.01408},
+  author = {Moller,  Korbinian and Schwarzmeier,  Luis and Betz,  Johannes},
+  keywords = {Robotics (cs.RO),  Computer Vision and Pattern Recognition (cs.CV),  FOS: Computer and information sciences,  FOS: Computer and information sciences},
+  title = {From Shadows to Safety: Occlusion Tracking and Risk Mitigation for Urban Autonomous Driving},
+  publisher = {arXiv},
+  year = {2025},
+  copyright = {Creative Commons Attribution Non Commercial No Derivatives 4.0 International}
+}
 ```
 
 ### Frenetix Motion Planner
